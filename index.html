@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOLD & SILVER SHOP</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h2><i class="fas fa-gem"></i> NEW SHIDDHIKANT JWELLERS ASHTI</h2>
+    <div class="header-right">
+      <span>Welcome, <span id="welcomeUser"></span></span>
+      <button id="darkModeBtn"><i class="fas fa-moon"></i> Dark Mode</button>
+    </div>
+  </div>
+</header>
+
+  <!-- Login/Register Screen -->
+  <div id="authScreen" class="login-container" style="display: none;">
+    <div class="login-box">
+      <span class="login-close">&times;</span>
+      <h2 id="authTitle"><i class="fas fa-sign-in-alt"></i> Login</h2>
+      <p id="authMessage">Please enter your credentials to continue</p>
+      <div class="login-form">
+        <div class="input-group">
+          <label for="usernameInput"><i class="fas fa-user"></i> Username</label>
+          <input type="text" id="usernameInput" placeholder="Enter username">
+        </div>
+        <div class="input-group">
+          <label for="passwordInput"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="passwordInput" placeholder="Enter password">
+        </div>
+        <div class="input-group" id="confirmPasswordGroup" style="display: none;">
+          <label for="confirmPasswordInput"><i class="fas fa-lock"></i> Confirm Password</label>
+          <input type="password" id="confirmPasswordInput" placeholder="Confirm password">
+        </div>
+        <button id="authSubmitBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button id="authSwitchBtn"><i class="fas fa-user-plus"></i> Need to Register?</button>
+        <p class="login-hint" id="authHint">Demo: username + password "jewelry123"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Home Screen (Shown by default) -->
+  <div id="homeScreen" class="screen">
+    <nav class="navbar">
+      <h2><i class="fas fa-store"></i> Gold & Silver Shop</h2>
+      <div class="nav-right">
+        <span id="userStatus">Welcome, Guest</span>
+        <button id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button id="registerBtn"><i class="fas fa-user-plus"></i> Register</button>
+        <button id="addProductBtn" style="display: none;"><i class="fas fa-plus"></i> Add Product</button>
+        <button id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <button id="cartBtn"><i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </nav>
+
+    <!-- Search and Filters -->
+    <div class="search-filters">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="filters">
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="Gold">Gold</option>
+          <option value="Silver">Silver</option>
+          <option value="Ladies Ring">Ladies Ring</option>
+          <option value="Gents Ring">Gents Ring</option>
+          <option value="Bracelet">Bracelet</option>
+          <option value="Necklace">Necklace</option>
+          <option value="Earrings">Earrings</option>
+          <option value="Pendant">Pendant</option>
+          <option value="Chain">Chain</option>
+        </select>
+        <input type="number" id="minWeight" placeholder="Min weight (g)">
+        <input type="number" id="maxWeight" placeholder="Max weight (g)">
+        <select id="purityFilter">
+          <option value="">All Purities</option>
+          <option value="22K">22K</option>
+          <option value="24K">24K</option>
+         <option value="20K">20K</option>
+          <option value="Silver">Silver</option>
+        </select>
+        <input type="number" id="maxPrice" placeholder="Max price (₹)">
+        <button id="applyFilters"><i class="fas fa-filter"></i> Apply Filters</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="productGrid" class="product-grid"></div>
+  </div>
+
+  <!-- Product Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <img id="modalImg" alt="Product Image">
+        <div class="modal-details">
+          <h3 id="modalName"></h3>
+          <p id="modalPurity"><i class="fas fa-star"></i> Purity: <span></span></p>
+          <p id="modalWeight"><i class="fas fa-weight"></i> Weight: <span></span></p>
+          <p id="modalPrice"><i class="fas fa-rupee-sign"></i> Price: <span></span></p>
+          <p id="modalDesc"></p>
+          <button id="addToCartBtn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Screen -->
+  <div id="cartScreen" class="modal">
+    <div class="modal-content cart-modal">
+      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+      <ul id="cartList"></ul>
+      <div class="cart-total">
+        <p>Total: ₹<span id="cartTotal">0</span></p>
+        <button id="checkoutBtn"><i class="fas fa-credit-card"></i> Checkout</button>
+      </div>
+      <button id="closeCartBtn"><i class="fas fa-times"></i> Close</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 New Shiddhikant Jewellers Ashti. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#"><i class="fas fa-phone"></i> Contact</a>
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
