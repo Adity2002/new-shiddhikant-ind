@@ -1,5 +1,6 @@
+// ================= Firebase Setup =================
 import { auth, db } from "./firebase.js";
-// ================= Firebase Imports =================
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -19,14 +20,46 @@ let isLoggedIn = false;
 let currentUser = null;
 let isRegisterMode = false;
 
-// ================= Auth Functions =================
-function showAuthModal(registerMode = false){
+// ================= DOM Elements =================
+let authScreen, authTitle, authSubmitBtn, authSwitchBtn;
+let usernameInput, passwordInput, confirmPasswordInput, confirmPasswordGroup;
+let loginBtn, registerBtn, logoutBtn, addProductBtn, userStatus;
+
+// ================= Error Handler =================
+function showAuthError(error) {
+  switch (error.code) {
+    case "auth/invalid-email":
+      alert("Invalid email address");
+      break;
+    case "auth/user-not-found":
+      alert("Account not found. Please register first");
+      break;
+    case "auth/wrong-password":
+      alert("Incorrect password");
+      break;
+    case "auth/email-already-in-use":
+      alert("This email is already registered");
+      break;
+    case "auth/weak-password":
+      alert("Password must be at least 6 characters");
+      break;
+    case "auth/network-request-failed":
+      alert("Network error. Please check your internet");
+      break;
+    default:
+      alert("Something went wrong. Please try again");
+      console.error(error);
+  }
+}
+
+// ================= Auth Modal =================
+function showAuthModal(registerMode = false) {
   isRegisterMode = registerMode;
 
   authTitle.innerText = registerMode ? "Register" : "Login";
   authSubmitBtn.innerText = registerMode ? "Register" : "Login";
   authSwitchBtn.innerText = registerMode
-    ? "Already have account?"
+    ? "Already have an account?"
     : "Create new account";
 
   confirmPasswordGroup.style.display = registerMode ? "block" : "none";
@@ -38,38 +71,43 @@ function showAuthModal(registerMode = false){
   authScreen.style.display = "flex";
 }
 
-// -------- LOGIN --------
-async function handleLogin(){
+// ================= Login =================
+async function handleLogin() {
   const email = usernameInput.value.trim();
   const password = passwordInput.value.trim();
 
-  if(!email || !password){
+  if (!email || !password) {
     alert("Email आणि Password टाका");
     return;
   }
 
-  try{
+  try {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     currentUser = cred.user;
     isLoggedIn = true;
     authScreen.style.display = "none";
-  }catch(err){
-    alert(err.message);
+  } catch (err) {
+    showAuthError(err);
   }
 }
 
-// -------- REGISTER --------
-async function handleRegister(){
+// ================= Register =================
+async function handleRegister() {
   const email = usernameInput.value.trim();
   const password = passwordInput.value.trim();
   const confirm = confirmPasswordInput.value.trim();
 
-  if(password !== confirm){
+  if (!email || !password || !confirm) {
+    alert("सर्व माहिती भरा");
+    return;
+  }
+
+  if (password !== confirm) {
     alert("Password जुळत नाही");
     return;
   }
 
-  try{
+  try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
 
     await setDoc(doc(db, "users", cred.user.uid), {
@@ -82,20 +120,20 @@ async function handleRegister(){
     isLoggedIn = true;
     authScreen.style.display = "none";
     alert("Account created successfully");
-  }catch(err){
-    alert(err.message);
+  } catch (err) {
+    showAuthError(err);
   }
 }
 
-// -------- LOGOUT --------
-async function logout(){
+// ================= Logout =================
+async function logout() {
   await signOut(auth);
   alert("Logged out successfully");
 }
 
 // ================= Auth State Listener =================
-onAuthStateChanged(auth, async (user)=>{
-  if(user){
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
     isLoggedIn = true;
     currentUser = user;
 
@@ -107,12 +145,13 @@ onAuthStateChanged(auth, async (user)=>{
     registerBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
 
-    if(data.role === "admin"){
+    if (data.role === "admin") {
       addProductBtn.style.display = "inline-block";
     }
-  }else{
+  } else {
     isLoggedIn = false;
     currentUser = null;
+
     userStatus.innerText = "Welcome Guest";
     loginBtn.style.display = "inline-block";
     registerBtn.style.display = "inline-block";
@@ -122,15 +161,12 @@ onAuthStateChanged(auth, async (user)=>{
 });
 
 // ================= DOM Ready =================
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-  // Elements
   authScreen = document.getElementById("authScreen");
   authTitle = document.getElementById("authTitle");
   authSubmitBtn = document.getElementById("authSubmitBtn");
   authSwitchBtn = document.getElementById("authSwitchBtn");
-  authMessage = document.getElementById("authMessage");
-  authHint = document.getElementById("authHint");
 
   usernameInput = document.getElementById("usernameInput");
   passwordInput = document.getElementById("passwordInput");
@@ -143,20 +179,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
   addProductBtn = document.getElementById("addProductBtn");
   userStatus = document.getElementById("welcomeUser");
 
+  loginBtn.addEventListener("click", () => showAuthModal(false));
+  registerBtn.addEventListener("click", () => showAuthModal(true));
 
-  // Events
-  loginBtn.addEventListener("click", ()=>showAuthModal(false));
-  registerBtn.addEventListener("click", ()=>showAuthModal(true));
-
-  authSubmitBtn.addEventListener("click", ()=>{
+  authSubmitBtn.addEventListener("click", () => {
     isRegisterMode ? handleRegister() : handleLogin();
   });
 
-  authSwitchBtn.addEventListener("click", ()=>{
+  authSwitchBtn.addEventListener("click", () => {
     showAuthModal(!isRegisterMode);
   });
 
   logoutBtn.addEventListener("click", logout);
 });
+
 
 
