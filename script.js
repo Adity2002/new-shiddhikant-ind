@@ -1,6 +1,5 @@
-// ================= Firebase Imports =================
 import { auth, db } from "./firebase.js";
-
+// ================= Firebase Imports =================
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -142,7 +141,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
   registerBtn = document.getElementById("registerBtn");
   logoutBtn = document.getElementById("logoutBtn");
   addProductBtn = document.getElementById("addProductBtn");
-  userStatus = document.getElementById("userStatus");
+  userStatus = document.getElementById("welcomeUser");
+
 
   // Events
   loginBtn.addEventListener("click", ()=>showAuthModal(false));
@@ -158,4 +158,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   logoutBtn.addEventListener("click", logout);
 });
+
 
