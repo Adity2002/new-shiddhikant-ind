@@ -2,23 +2,7 @@
 console.log('Script loaded successfully');
 // Default products
 const defaultProducts = [
-  { name: "Gold Ring", image: "images/gold-ring.svg", purity: "22K", weight: 10, description: "Elegant 22K gold ring, perfect for daily wear.", category: "Ladies Ring", totalPrice: 50000 },
-  { name: "Gold Necklace", image: "images/gold-necklace.svg", purity: "22K", weight: 20, description: "Beautiful 22K gold necklace for special occasions.", category: "Necklace", totalPrice: 100000 },
-  { name: "Gold Bracelet", image: "images/gold-bracelet.svg", purity: "24K", weight: 15, description: "Premium 24K gold bracelet with intricate design.", category: "Bracelet", totalPrice: 75000 },
-  { name: "Gold Earrings", image: "images/gold-earrings.svg", purity: "22K", weight: 8, description: "Stylish 22K gold earrings for elegant look.", category: "Earrings", totalPrice: 40000 },
-  { name: "Gold Pendant", image: "images/gold-pendant.svg", purity: "24K", weight: 12, description: "24K gold pendant with fine craftsmanship.", category: "Pendant", totalPrice: 60000 },
-  { name: "Gold Chain", image: "images/gold-chain.svg", purity: "22K", weight: 25, description: "Elegant 22K gold chain, ideal for gifts.", category: "Chain", totalPrice: 125000 },
-  { name: "Silver Ring", image: "images/silver-ring.svg", purity: "Silver", weight: 15, description: "Classic silver ring for everyday style.", category: "Gents Ring", totalPrice: 1500 },
-  { name: "Silver Necklace", image: "images/silver-necklace.svg", purity: "Silver", weight: 30, description: "Beautiful silver necklace with modern design.", category: "Necklace", totalPrice: 3000 },
-  { name: "Silver Bracelet", image: "images/silver-bracelet.svg", purity: "Silver", weight: 20, description: "Stylish silver bracelet for casual wear.", category: "Bracelet", totalPrice: 2000 },
-  { name: "Silver Earrings", image: "images/silver-earrings.svg", purity: "Silver", weight: 10, description: "Elegant silver earrings for any occasion.", category: "Earrings", totalPrice: 1000 },
-  { name: "Silver Pendant", image: "images/silver-pendant.svg", purity: "Silver", weight: 18, description: "Silver pendant with delicate craftsmanship.", category: "Pendant", totalPrice: 1800 },
-  { name: "Silver Chain", image: "images/silver-chain.svg", purity: "Silver", weight: 35, description: "Versatile silver chain for various styles.", category: "Chain", totalPrice: 3500 },
-  // Additional products for more variety
-  { name: "Gold Gents Ring", image: "images/gold-ring.svg", purity: "24K", weight: 12, description: "Premium 24K gold ring for gentlemen.", category: "Gents Ring", totalPrice: 65000 },
-  { name: "Gold Ladies Ring", image: "images/gold-ring.svg", purity: "22K", weight: 8, description: "Delicate 22K gold ring for ladies.", category: "Ladies Ring", totalPrice: 45000 },
-  { name: "Silver Ladies Ring", image: "images/silver-ring.svg", purity: "Silver", weight: 12, description: "Elegant silver ring for ladies.", category: "Ladies Ring", totalPrice: 1200 },
-  // New products with additional images
+ 
   { name: "Diamond Gold Ring", image: "images/diamond-gold-ring.jpg", purity: "22K", weight: 14, description: "Stunning 22K gold ring with diamond accents.", category: "Ladies Ring", totalPrice: 85000 },
   { name: "Pearl Necklace", image: "images/pearl-necklace.jpg", purity: "Silver", weight: 25, description: "Elegant pearl necklace on silver chain.", category: "Necklace", totalPrice: 5500 },
   { name: "Gold Bangle Set", image: "images/gold-bangle-set.jpg", purity: "22K", weight: 50, description: "Traditional 22K gold bangle set for festivals.", category: "Bracelet", totalPrice: 250000 },
@@ -513,3 +497,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderProducts(); // Show products immediately with default prices
   updateProductPrices(); // Update with real prices in background
 });
+
