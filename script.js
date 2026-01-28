@@ -3,16 +3,7 @@ console.log('Script loaded successfully');
 // Default products
 const defaultProducts = [
  
-  { name: "Diamond Gold Ring", image: "images/diamond-gold-ring.jpg", purity: "22K", weight: 14, description: "Stunning 22K gold ring with diamond accents.", category: "Ladies Ring", totalPrice: 85000 },
-  { name: "Pearl Necklace", image: "images/pearl-necklace.jpg", purity: "Silver", weight: 25, description: "Elegant pearl necklace on silver chain.", category: "Necklace", totalPrice: 5500 },
-  { name: "Gold Bangle Set", image: "images/gold-bangle-set.jpg", purity: "22K", weight: 50, description: "Traditional 22K gold bangle set for festivals.", category: "Bracelet", totalPrice: 250000 },
-  { name: "Silver Anklet", image: "images/silver-anklet.jpg", purity: "Silver", weight: 22, description: "Delicate silver anklet with bell charms.", category: "Bracelet", totalPrice: 2200 },
-  { name: "Gold Nose Pin", image: "images/gold-nose-pin.jpg", purity: "24K", weight: 2, description: "Fine 24K gold nose pin for traditional wear.", category: "Pendant", totalPrice: 12000 },
-  { name: "Silver Toe Ring", image: "images/silver-toe-ring.jpg", purity: "Silver", weight: 5, description: "Stylish silver toe ring for casual wear.", category: "Ladies Ring", totalPrice: 800 },
-  { name: "Gold Mangalsutra", image: "images/gold-mangalsutra.jpg", purity: "22K", weight: 18, description: "Traditional 22K gold mangalsutra design.", category: "Necklace", totalPrice: 95000 },
-  { name: "Silver Keychain", image: "images/silver-keychain.jpg", purity: "Silver", weight: 15, description: "Elegant silver keychain with custom engraving.", category: "Chain", totalPrice: 1500 },
-  { name: "Gold Cufflinks", image: "images/gold-cufflinks.jpg", purity: "18K", weight: 10, description: "Premium 18K gold cufflinks for formal wear.", category: "Gents Ring", totalPrice: 45000 },
-  { name: "Silver Hair Accessories", image: "images/silver-hair-accessories.jpg", purity: "Silver", weight: 8, description: "Beautiful silver hair clips and accessories.", category: "Earrings", totalPrice: 1200 }
+ 1200 }
 ];
 
 // Load products from localStorage and merge with defaults
@@ -497,4 +488,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderProducts(); // Show products immediately with default prices
   updateProductPrices(); // Update with real prices in background
 });
+
 
